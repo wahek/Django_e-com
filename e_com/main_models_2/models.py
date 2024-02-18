@@ -40,7 +40,7 @@ class Item(models.Model):
 
 
 class Order(models.Model):
-    id_client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    id_item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    id_client = models.ManyToManyField(Client)
+    id_item = models.ManyToManyField(Item)
     total_sum = models.IntegerField()
     date_of_creation = models.DateTimeField(auto_now_add=True)
