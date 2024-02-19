@@ -3,7 +3,9 @@
 {% block title%}{{ title }}{% endblock %}
 
 {% block content %}
-<h1>О сайте</h1>
+<h1>{{ period }}</h1>
+<h3>Получатель: {{ client_name }}</h3>
+<h4>Адрес: {{ client_address }}</h4>
 <ul>
     {% for order_dict in orders_list %}
         <li>Заказ:</li>
