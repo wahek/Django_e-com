@@ -1,0 +1,23 @@
+{% extends 'main_models_2/index.html' %}
+
+{% block title%}{{ title }}{% endblock %}
+
+{% block content %}
+<h1>О сайте</h1>
+<ul>
+    {% for order_dict in orders_list %}
+        <li>Заказ:</li>
+        <ul>
+            {% for key, queryset in order_dict.items %}
+                <li>{{ key }}</li>
+                <li>Товары:</li>
+                <ul>
+                    {% for obj in queryset %}
+                        <li>{{ obj }}</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</ul>
+{% endblock %}

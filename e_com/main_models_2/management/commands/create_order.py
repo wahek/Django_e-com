@@ -20,5 +20,9 @@ class Command(BaseCommand):
         order = Order(id_client=client)
         order.save()
         order.id_item.set(current)
+        cur_sum = 0
+        for cur in current:
+            cur_sum += cur.price
+        order.total_sum = cur_sum
         order.save()
         return 'OK'
