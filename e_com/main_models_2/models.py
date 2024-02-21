@@ -38,9 +38,17 @@ class Item(models.Model):
     count = models.IntegerField()
     date_of_edit = models.DateField(auto_now_add=True)
 
+    def __str__(self):
+        return f'Товар: {self.name}. Стоимость: {self.price}'
+
 
 class Order(models.Model):
-    id_client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    id_item = models.ManyToManyField(Item)
+    id_client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='id_client')
+    id_item = models.ManyToManyField(Item, related_name='id_item')
     total_sum = models.IntegerField(default=0)
     date_of_creation = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return (f'Заказ №: {self.id}. '
+                f'Сумма заказа: {self.total_sum}. '
+                f'Дата создания: {self.date_of_creation}. ')
