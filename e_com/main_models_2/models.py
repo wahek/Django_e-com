@@ -37,6 +37,7 @@ class Item(models.Model):
     price = models.IntegerField()
     count = models.IntegerField()
     date_of_edit = models.DateField(auto_now_add=True)
+    image = models.ImageField(upload_to='item_images/', null=True, blank=True, default='empty.jpg')
 
     def __str__(self):
         return f'Товар: {self.name}. Стоимость: {self.price}'

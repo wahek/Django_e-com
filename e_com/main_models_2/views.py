@@ -59,7 +59,7 @@ def get_orders_by_time(request, pk):
 
 def add_item(request):
     if request.method == 'POST':
-        form = ItemForm(request.POST)
+        form = ItemForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, 'Форма успешно заполнена!')
