@@ -30,6 +30,9 @@ class Client(models.Model):
     address = models.CharField(max_length=128)
     date_of_registration = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f'Клиент: {self.name}. Телефон: {self.phone_number}, Email: {self.email}'
+
 
 class Item(models.Model):
     name = models.CharField(max_length=64)
