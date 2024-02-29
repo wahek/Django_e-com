@@ -30,6 +30,9 @@ class Client(models.Model):
     address = models.CharField(max_length=128)
     date_of_registration = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f'Клиент: {self.name}. Телефон: {self.phone_number}, Email: {self.email}'
+
 
 class Item(models.Model):
     name = models.CharField(max_length=64)
@@ -53,3 +56,11 @@ class Order(models.Model):
         return (f'Заказ №: {self.id}. '
                 f'Сумма заказа: {self.total_sum}. '
                 f'Дата создания: {self.date_of_creation}. ')
+
+    def save(
+        self, force_insert=False, force_update=False, using=None, update_fields=None
+    ):
+        self.total_sum = 0
+        for item in self.id_item.all():
+            self.total_sum += item.price
+        super().save()
