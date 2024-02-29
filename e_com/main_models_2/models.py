@@ -56,3 +56,11 @@ class Order(models.Model):
         return (f'Заказ №: {self.id}. '
                 f'Сумма заказа: {self.total_sum}. '
                 f'Дата создания: {self.date_of_creation}. ')
+
+    def save(
+        self, force_insert=False, force_update=False, using=None, update_fields=None
+    ):
+        self.total_sum = 0
+        for item in self.id_item.all():
+            self.total_sum += item.price
+        super().save()
